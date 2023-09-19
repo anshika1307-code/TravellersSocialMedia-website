@@ -1,0 +1,14 @@
+.postimage {
+    width: 30%;
+    height: 10%;
+    margin-left: 25%;
+    margin-top: 5%;
+    position: absolute;
+    display: inline-block;
+}
+
+.imagee {
+    position: absolute;
+    margin-left: 63.6%;
+    margin-top: 5%;
+}

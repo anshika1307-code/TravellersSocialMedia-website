@@ -1,0 +1,63 @@
+body {
+    background-color: aliceblue;
+    font-family: 'Montserrat';
+}
+
+.mainbox{
+    background-color: rgb(245, 245, 245);
+    margin: 74px 15px 15px 980px;
+    height: 610px;
+    width: 440px;
+    position: absolute;
+}
+
+.pp {
+    padding-right: 80px;
+}
+
+.upperpanel{
+    background-color: rgb(255, 255, 255);
+    padding: 7px 0px 7px 7px;
+    height: 60px;
+    width: 440px;
+    display: inline-flex;
+}
+.buttons{
+    margin-top: 7px;
+    
+}
+.btn-outline-secondary:hover{
+    background-color: white;
+}
+.btn-outline-secondary{
+    background-color: white;
+    margin-left: 6px;
+    border-color: rgb(112, 111, 111);
+}
+.btn-secondary{
+    background-color: rgb(225, 221, 221);
+    color: rgb(112, 111, 111);
+    border-style: hidden;
+    font-weight: bold;
+}
+.test:after {
+    content: '\2807';
+    font-size: 12px;
+    }
+.desc{
+    margin: 8px 8px 8px 8px;
+    padding: 8px 8px 8px 8px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(134, 134, 134);
+    border-radius: 8px;
+    background-color: white;
+}
+.hl{
+    border-bottom: 1px solid rgb(112, 111, 111);
+    margin-bottom: 10px;
+}
+
+.spacee {
+    margin-left: 10px;
+}

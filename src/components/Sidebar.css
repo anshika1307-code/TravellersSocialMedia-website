@@ -1,0 +1,36 @@
+body {
+    background-color: aliceblue;
+    font-family: 'Montserrat';
+}
+
+
+.cardd {
+    margin-top: 30%;
+    position: absolute;
+    margin-left: 2.7%;
+    border-radius: 4px Solid black;
+    padding: 10px 60px 10px 60px;
+    width:19%;
+}
+
+.textt{
+    display: inline-block;
+    
+}
+
+.texttt{
+    padding-top: 35px;
+    font-size: 20px;
+    padding-left: 15px;
+    margin-bottom: 0%;
+    font-weight: 600;
+}
+
+.oone{
+    margin-bottom: 10px;
+}
+
+.ee{
+    padding-top: 10px;
+}
+

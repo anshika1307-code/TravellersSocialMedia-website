@@ -1,0 +1,65 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#signup{
+  border: transparent;
+  outline: none;
+}
+
+.btn-primary {
+  background: #ff5108;
+  border: 1px solid #ff5108;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active:focus {
+  background: #dd5218;
+  border: 1px solid #dd5218;
+  color: #FFF;
+}
+.btn-secondary {
+  background: #ffffff;
+  color: #ff5108;
+  border: 1px solid #ff5108;
+}
+.btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active:focus {
+  background: #ff5108;
+  color: #fff;
+}
+.btn-tertiary {
+  background: #41424b;
+  color: #fff;
+}
