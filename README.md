@@ -40,10 +40,7 @@ To get a local copy up and running, follow these simple steps:
 ## Usage
 Once the server is running, open your browser and navigate to http://localhost:3000 to see the application in action. Sign up, create a profile, and start sharing your travel stories!
 
-#### Flowchart and Screenshots
-Include a flowchart and screenshots to help visualize the project. Use relative paths to link to images stored in your `docs` folder.
 
-```markdown
 ## Flowchart
 Below is a flowchart of the website architecture:
 
@@ -51,6 +48,9 @@ Below is a flowchart of the website architecture:
 
 ## Screenshots
 Here are some screenshots of the application:
+
+### Landing Page
+![Landing Page](docs/landingpage.png)
 
 ### Home Page
 ![Home Page](docs/homepage.png)
