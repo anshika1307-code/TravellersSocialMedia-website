@@ -36,7 +36,7 @@ To get a local copy up and running, follow these simple steps:
 
  Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/travel-social-media.git
+   git clone https://github.com/anshika1307-code/TravellersSocialMedia-website.git
   ```
 
 ## Usage
