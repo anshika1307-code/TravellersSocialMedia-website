@@ -1,8 +1,16 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'rating-gradient': 'linear-gradient(to right, #FFDBD5, #ff006e)', // Example gradient from teal to blue
+      }
+    },
   },
   plugins: [],
 }
+
