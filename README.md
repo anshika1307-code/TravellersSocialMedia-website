@@ -21,13 +21,15 @@ This project aims to provide a social media platform specifically for travelers.
 - Like and comment on posts
 - Follow other users
 - Search for travel destinations
+- Recommendation System
+- Location Tagging
 
 ## Technologies Used
-- Frontend: HTML, CSS, JavaScript, React
+- Frontend: JavaScript, React, Tailwindcss, Redux-Toolkit
 - Backend: Node.js, Express.js
-- Database: Firebase
+- Database: MongoDB
 - Authentication: JWT (JSON Web Tokens)
-
+- Ai models - Python, Flask, Docker
 
 ## Installation
 To get a local copy up and running, follow these simple steps:
