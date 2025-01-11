@@ -147,7 +147,7 @@ import { fetchUserProfile } from '../../actions/AuthAction';
 const ProfileCard = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.authReducer.authData?.user);
-
+  console.log("user in profile card",user);
   useEffect(() => {
     dispatch(fetchUserProfile());
   }, [dispatch]);
