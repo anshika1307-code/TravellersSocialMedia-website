@@ -153,10 +153,10 @@ const ProfileCard = () => {
   }, [dispatch]);
 
   return (
-    <div className="max-w-xs ml-3 mt-9 pt-9 ">
-      <div className="relative rounded-lg shadow-lg border border-black top-11">
+    <div className="max-w-xs ml-3">
+      <div className="relative rounded-xl shadow-md border-2 border-[#9A9494] top-11">
         {/* Avatar */}
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mb-2 mt-4">
+        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mb-5">
           <img
             className="rounded-full w-24 h-24"
             src={user?.profilePic || 'https://via.placeholder.com/150'}
@@ -166,24 +166,25 @@ const ProfileCard = () => {
         {/* Details */}
         <div className="px-6 py-4 pt-9 border-b border-gray-300">
           {/* Name */}
-          <div className="font-bold text-xl mb-2 text-center mt-6">
+          <div className="font-bold text-xl mb-2 text-center mt-5">
             {user?.username || 'Username'}
           </div>
           {/* Horizontal line */}
-          <div className="border-t border-gray-300 my-4"></div>
+          <div className="border-t border-gray-300"></div>
           {/* Post count, followers, following */}
-          <div className="flex justify-between text-sm mb-2">
-            <span>Posts</span>
-            <span>Followers</span>
-            <span>Following</span>
-          </div>
-          <div className="flex justify-between text-sm mb-2">
+          <div className="flex justify-between text-[22px] font-semibold pl-4 pr-4">
             <span>{user?.posts || 0}</span>
             <span>{user?.followers || 0}</span>
             <span>{user?.following || 0}</span>
           </div>
+          <div className="flex justify-between text-[10px] mb-2 pl-2 pr-2">
+            <span>Posts</span>
+            <span>Followers</span>
+            <span>Following</span>
+          </div>
+
           {/* Bio */}
-          <p className="text-gray-700 text-base">
+          <p className="flex justify-center text-gray-700 text-[12px] mt-5">
             {user?.bio || 'Add a bio to your profile.'}
           </p>
         </div>

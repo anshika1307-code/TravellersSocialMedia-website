@@ -240,12 +240,13 @@ function MainPage() {
       <Nav toggleMessageList={toggleMessageList} unreadCount={unreadCount} toggleNotification={toggleNotification} newNoti={newNoti}/>
       
       {/* Left Section */}
-      <div className="flex">
-        <div className="fixed bottom-0 w-64 overflow-y-auto z-50 hidden xl:block">
-          <div>
+      <div className="flex overflow-hidden">
+        <div className="fixed bottom-0 w-64  z-50 hidden xl:block">
+          <div className=''>
             <ProfileCard />
-            <MenuCard />
-             
+          </div>
+          <div className=' mt-[40px]'>
+          <MenuCard />
           </div>
         </div>
         
