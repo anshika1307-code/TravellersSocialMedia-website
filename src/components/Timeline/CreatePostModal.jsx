@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from "react";
 import Cropper from "react-easy-crop";
 import upload from "../../assets/upload.png";
@@ -15,10 +14,9 @@ function CreatePostModal({ onClose }) {
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const fileInputRef = useRef(null);
 
- 
   const [formData, setFormData] = useState({
-    user: '', 
-    caption: '',
+    user: "",
+    caption: "",
     media: [], // Array to store image/video URLs
     mainLocation: "",
     subLocations: [], // Array to store places, hotels, and food places
@@ -26,15 +24,15 @@ function CreatePostModal({ onClose }) {
     duration: "",
     cost: 0,
     tags: [],
-    recommendation: '',
+    recommendation: "",
     expenses: [],
   });
 
   // Fetch user and token from Redux store
   const user = useSelector((state) => state.authReducer.authData?.user);
   const token = useSelector((state) => state.authReducer.authData?.token);
-  console.log('user in post modal', user);
-  console.log('token in post modal', token);
+  console.log("user in post modal", user);
+  console.log("token in post modal", token);
   useEffect(() => {
     if (token) {
       dispatch(fetchUserProfile()); // Fetch the user profile if token exists
@@ -42,11 +40,11 @@ function CreatePostModal({ onClose }) {
   }, [dispatch, token]);
 
   useEffect(() => {
-    console.log("before user form data",user.id);
+    console.log("before user form data", user.id);
     if (user) {
       setFormData((prevData) => ({ ...prevData, user: user.id }));
     }
-    console.log("after user form data",formData);
+    console.log("after user form data", formData);
   }, [user, formData]);
 
   // Handle Image Upload
@@ -181,15 +179,15 @@ function CreatePostModal({ onClose }) {
           data.append(`subLocations[${index}][rating]`, sublocation.rating);
         }
       });
-      
+
       formData.expenses.forEach((expense, index) => {
         data.append(`expenses[${index}][name]`, expense.name);
         if (expense.cost !== undefined) {
           data.append(`expenses[${index}][cost]`, expense.cost);
         }
       });
-      
-      console.log('Data to be sent:', data);
+
+      console.log("Data to be sent:", data);
 
       // Call the createPost API
       const response = await fetch("http://localhost:5000/posts", {
@@ -213,7 +211,7 @@ function CreatePostModal({ onClose }) {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 z-1000">
-      <div className="relative bg-white p-5 px-5 rounded-2xl w-[30vw]">
+      <div className="relative bg-[#F2F0E3] p-5 px-5 rounded-2xl w-[30vw]">
         <div className="absolute right-3">
           <button
             className="bg-gray-700 text-gray-100 text-[14px] w-7 h-7 rounded-[50%] -mt-3"
@@ -333,7 +331,7 @@ function CreatePostModal({ onClose }) {
               name="caption"
               value={formData.caption}
               onChange={handleChange}
-              className="w-full p-2 border rounded-lg"
+              className="w-full p-2 border-2 border-gray-300 rounded-xl shadow-md"
               rows="6"
             />
             <div className="flex justify-between mt-4">
@@ -359,7 +357,7 @@ function CreatePostModal({ onClose }) {
             <h2 className="text-[32px] font-bold mb-4">Trip Overview</h2>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium">
+                <label className="block text-sm font-medium mb-3">
                   Main Location
                 </label>
                 <input
@@ -367,12 +365,12 @@ function CreatePostModal({ onClose }) {
                   name="mainLocation"
                   value={formData.mainLocation}
                   onChange={handleChange}
-                  className="w-full p-2 border rounded-lg"
+                  className="w-full p-2 border-2 border-gray-300 rounded-xl shadow-md"
                   placeholder="Enter main location"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium">
+                <label className="block text-sm font-medium mb-3">
                   Duration of Trip (Days)
                 </label>
                 <input
@@ -380,19 +378,19 @@ function CreatePostModal({ onClose }) {
                   name="duration"
                   value={formData.duration}
                   onChange={handleChange}
-                  className="w-full p-2 border rounded-lg"
+                  className="w-full p-2 border-2 border-gray-300 rounded-xl shadow-md"
                   placeholder="Enter duration"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium">
+                <label className="block text-sm font-medium mb-3">
                   Budget Category
                 </label>
                 <select
                   name="budgetCategory"
                   value={formData.budgetCategory}
                   onChange={handleChange}
-                  className="w-full p-2 border rounded-lg"
+                  className="w-full p-2 border-2 border-gray-300 rounded-xl shadow-md"
                 >
                   <option value="">Select</option>
                   <option value="low">Low</option>
@@ -401,17 +399,17 @@ function CreatePostModal({ onClose }) {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium">
+                <label className="block text-sm font-medium mb-3">
                   Overall Rating
                 </label>
-                <div className="flex space-x-2">
+                <div className="flex space-x-2 ">
                   {[1, 2, 3, 4, 5].map((value) => (
                     <span
                       key={value}
                       onClick={() =>
                         setFormData({ ...formData, overallRating: value })
                       }
-                      className={`cursor-pointer ${
+                      className={`border-2 border-gray-300 rounded-xl shadow-md p-2 cursor-pointer text-md ${
                         formData.overallRating >= value
                           ? "text-yellow-500"
                           : "text-gray-400"
@@ -457,7 +455,7 @@ function CreatePostModal({ onClose }) {
                       "subLocations"
                     )
                   }
-                  className="flex-1 p-2 border rounded-lg"
+                  className="flex-1 p-2 border-2 border-gray-300 rounded-xl shadow-md"
                 />
 
                 {/* Rating */}
@@ -473,7 +471,7 @@ function CreatePostModal({ onClose }) {
                       "subLocations"
                     )
                   }
-                  className="w-24 p-2 border rounded-lg"
+                  className="w-24 p-2 border-2 border-gray-300 rounded-xl shadow-md"
                 />
 
                 {/* Type */}
@@ -487,7 +485,7 @@ function CreatePostModal({ onClose }) {
                       "subLocations"
                     )
                   }
-                  className="w-40 p-2 border rounded-lg"
+                  className="w-40 p-2 border-2 border-gray-300 rounded-xl shadow-md"
                 >
                   <option value="">Type</option>
                   <option value="beach">Beach</option>
@@ -558,7 +556,7 @@ function CreatePostModal({ onClose }) {
                         "subLocations"
                       )
                     }
-                    className="flex-1 w-24 p-2 border rounded-lg"
+                    className="flex-1 w-24 p-2 border-2 border-gray-300 rounded-xl shadow-md"
                   />
 
                   {/* Rating */}
@@ -574,7 +572,7 @@ function CreatePostModal({ onClose }) {
                         "subLocations"
                       )
                     }
-                    className="w-20 p-2 border rounded-lg"
+                    className="w-20 p-2 border-2 border-gray-300 rounded-xl shadow-md"
                   />
 
                   {/* Cost */}
@@ -590,7 +588,7 @@ function CreatePostModal({ onClose }) {
                         "subLocations"
                       )
                     }
-                    className="w-24 p-2 border rounded-lg"
+                    className="w-24 p-2 border-2 border-gray-300 rounded-xl shadow-md"
                   />
 
                   {/* Remove Button */}
@@ -655,7 +653,7 @@ function CreatePostModal({ onClose }) {
                         "subLocations"
                       )
                     }
-                    className="flex-1 p-2 border rounded-lg"
+                    className="flex-1 p-2 border-2 border-gray-300 rounded-xl shadow-md"
                   />
 
                   {/* Rating */}
@@ -671,7 +669,7 @@ function CreatePostModal({ onClose }) {
                         "subLocations"
                       )
                     }
-                    className="w-24 p-2 border rounded-lg"
+                    className="w-24 p-2 border-2 border-gray-300 rounded-xl shadow-md"
                   />
 
                   {/* Cost */}
@@ -687,7 +685,7 @@ function CreatePostModal({ onClose }) {
                         "subLocations"
                       )
                     }
-                    className="w-40 p-2 border rounded-lg"
+                    className="w-40 p-2 border-2 border-gray-300 rounded-xl shadow-md"
                   />
 
                   {/* Remove Button */}
@@ -756,7 +754,7 @@ function CreatePostModal({ onClose }) {
                       "expenses"
                     )
                   }
-                  className="flex-1 p-2 border rounded-lg"
+                  className="flex-1 p-2 border-2 border-gray-300 rounded-xl shadow-md"
                 />
 
                 {/* Cost */}
@@ -772,7 +770,7 @@ function CreatePostModal({ onClose }) {
                       "expenses"
                     )
                   }
-                  className="w-40 p-2 border rounded-lg"
+                  className="w-40 p-2 border-2 border-gray-300 rounded-xl shadow-md"
                 />
 
                 {/* Remove Button */}
@@ -804,7 +802,7 @@ function CreatePostModal({ onClose }) {
               name="recommendation"
               value={formData.recommendation}
               onChange={handleChange}
-              className="w-full p-2 border rounded-lg"
+              className="w-full p-2 border rounded-lg border-2 border-gray-300 rounded-xl shadow-md"
               rows="4"
               placeholder="Share your overall recommendation for this trip"
             />

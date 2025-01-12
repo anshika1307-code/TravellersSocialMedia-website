@@ -77,6 +77,8 @@ button:focus-visible {
   font-family: "Space Grotesk", serif;
 }
 
-h2{
+h2, h1, h3, h4, h5{
   font-family: "Source Serif 4", serif;
+  color: #202121;
 }
+
