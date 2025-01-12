@@ -167,9 +167,26 @@ function CreatePostModal({ onClose }) {
       data.append('recommendation', formData.recommendation);
 
       // Append subLocations and expenses as JSON strings
-      data.append('subLocations', JSON.stringify(formData.subLocations));
-      data.append('expenses', JSON.stringify(formData.expenses));
-
+      // data.append('subLocations', JSON.stringify(formData.subLocations));
+      // data.append('expenses', JSON.stringify(formData.expenses));
+      formData.subLocations.forEach((sublocation, index) => {
+        data.append(`subLocations[${index}][name]`, sublocation.name);
+        data.append(`subLocations[${index}][type]`, sublocation.type);
+        if (sublocation.cost !== undefined) {
+          data.append(`subLocations[${index}][cost]`, sublocation.cost);
+        }
+        if (sublocation.rating !== undefined) {
+          data.append(`subLocations[${index}][rating]`, sublocation.rating);
+        }
+      });
+      
+      formData.expenses.forEach((expense, index) => {
+        data.append(`expenses[${index}][name]`, expense.name);
+        if (expense.cost !== undefined) {
+          data.append(`expenses[${index}][cost]`, expense.cost);
+        }
+      });
+      
       console.log('Data to be sent:', data);
 
       // Call the createPost API
