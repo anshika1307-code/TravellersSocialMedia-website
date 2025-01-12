@@ -8,7 +8,7 @@ import noti from '../../assets/noti.png';
 import messageBox from '../../assets/messageBox.png';
 const Nav = ({ toggleMessageList, unreadCount, toggleNotification, newNoti }) => {
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-gray-900 p-6 rounded-b-xl shadow-xl ">
+    <nav className="flex items-center justify-between flex-wrap bg-gray-100 py-2 px-4 rounded-b-xl shadow-xl ">
          {/* Hamburger icon for small screens */}
       <div className="block lg:hidden">
       <button className="text-white hover:text-gray-300 focus:outline-none">
@@ -36,7 +36,7 @@ const Nav = ({ toggleMessageList, unreadCount, toggleNotification, newNoti }) =>
        <div className="hidden lg:flex lg:justify-center lg:flex-1 lg:mr-32">
          {/* Search input */}
          <input
-          className="bg-gray-800 text-gray-50 rounded-md py-2 px-9 text-center focus:outline-none focus:bg-gray-700 w-full lg:w-auto rounded-2xl h-12"
+          className="bg-gray-300 text-gray-50 rounded-md py-2 px-9 text-center focus:outline-none focus:bg-gray-700 w-full lg:w-auto rounded-2xl h-12"
           type="text"
           placeholder="Whats in your mind?"
         />
