@@ -61,12 +61,38 @@ import PostCard from '../../components/Timeline/PostCard';
 import MessageList from '../../components/MessageBox/MessageList.jsx';
 import WriteMessageCard from '../../components/MessageBox/WriteMessageCard.jsx';
 import NotificationBox from '../../components/Notification/NotificationBox.jsx';
-
+import { useDispatch, useSelector } from "react-redux";
 function MainPage() {
   const [postCards, setPostCards] = useState([]);
   const [isMessageListVisible, setIsMessageListVisible] = useState(false);
   const [selectedMessage, setSelectedMessage] = useState(null);
   const [notificationTab, setNotificationTab] = useState(false);
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.authReducer.authData?.token);
+  console.log('Token:', token);
+  const [postsbackend, setPosts] = useState([]);
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        console.log("token", token);
+        const response = await fetch("http://localhost:5000/posts/timeline", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`, 
+          },
+        
+        });
+        const data = await response.json();
+        console.log("data", data);
+        setPosts(data);
+        
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    };
+    fetchPosts();
+  }, []);
+  
   const toggleNotification = () => {
     setNotificationTab(!notificationTab);
   };
@@ -251,13 +277,34 @@ function MainPage() {
         </div>
         
         {/* Right Section */}
-        <div className="ml-0 xl:ml-64 w-full">
+        {/* <div className="ml-0 xl:ml-64 w-full">
           <div className="w-full overflow-y-auto" style={{ maxHeight: 'calc(100vh - 60px)' }}>
             {posts.map(post => (
               <PostCard key={post.id} title={post.title} content={post.content} author={post.author} date={post.date} />
             ))}
           </div>
-        </div>
+        </div> */}
+        <div className="ml-0 xl:ml-64 w-full">
+    <div
+      className="w-full overflow-y-auto"
+      style={{ maxHeight: 'calc(100vh - 60px)' }}
+    >
+      {postsbackend.length > 0 ? (
+        postsbackend.map(post => (
+         
+          <PostCard
+            key={post._id}
+            title={post.mainLocation}
+            content={post.caption}
+            author={post.user.username}
+            date={post.createdAt}
+          />
+        ))
+      ) : (
+        <p className="text-center text-gray-500 mt-10">No posts to display</p>
+      )}
+    </div>
+  </div>
         
         <div className="relative z-110 min-h-screen flex">
       {/* Other components or content can be added here */}
