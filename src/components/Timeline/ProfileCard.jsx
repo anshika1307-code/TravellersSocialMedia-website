@@ -153,7 +153,7 @@ const ProfileCard = () => {
   }, [dispatch]);
 
   return (
-    <div className="max-w-xs ml-3">
+    <div className="max-w-xs ml-2 mt-3">
       <div className="relative rounded-xl shadow-md border-2 border-[#9A9494] top-11">
         {/* Avatar */}
         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mb-5">

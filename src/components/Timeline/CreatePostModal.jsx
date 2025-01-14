@@ -3,6 +3,7 @@ import Cropper from "react-easy-crop";
 import upload from "../../assets/upload.png";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserProfile } from "../../actions/AuthAction";
+import { FaDeleteLeft } from "react-icons/fa6";
 
 function CreatePostModal({ onClose }) {
   const dispatch = useDispatch();
@@ -211,7 +212,7 @@ function CreatePostModal({ onClose }) {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 z-1000">
-      <div className="relative bg-[#F2F0E3] p-5 px-5 rounded-2xl w-[30vw]">
+      <div className="relative bg-[#F2F0E3] p-5 px-5 rounded-2xl min-w-[30vw]">
         <div className="absolute right-3">
           <button
             className="bg-gray-700 text-gray-100 text-[14px] w-7 h-7 rounded-[50%] -mt-3"
@@ -461,7 +462,7 @@ function CreatePostModal({ onClose }) {
                 {/* Rating */}
                 <input
                   type="number"
-                  placeholder="Rating (0-5)"
+                  placeholder="Rating"
                   value={place.rating || ""}
                   onChange={(e) =>
                     handleDynamicChange(
@@ -471,7 +472,7 @@ function CreatePostModal({ onClose }) {
                       "subLocations"
                     )
                   }
-                  className="w-24 p-2 border-2 border-gray-300 rounded-xl shadow-md"
+                  className="w-[80px] p-2 border-2 border-gray-300 rounded-xl shadow-md"
                 />
 
                 {/* Type */}
@@ -485,7 +486,7 @@ function CreatePostModal({ onClose }) {
                       "subLocations"
                     )
                   }
-                  className="w-40 p-2 border-2 border-gray-300 rounded-xl shadow-md"
+                  className="w-30 p-2 border-2 border-gray-300 rounded-xl shadow-md"
                 >
                   <option value="">Type</option>
                   <option value="beach">Beach</option>
@@ -507,7 +508,7 @@ function CreatePostModal({ onClose }) {
                     });
                   }}
                 >
-                  Remove
+                 <FaDeleteLeft size={18}/>
                 </button>
               </div>
             ))}
@@ -562,7 +563,7 @@ function CreatePostModal({ onClose }) {
                   {/* Rating */}
                   <input
                     type="number"
-                    placeholder="Rating (0-5)"
+                    placeholder="Rating"
                     value={food.rating || ""}
                     onChange={(e) =>
                       handleDynamicChange(
@@ -604,7 +605,7 @@ function CreatePostModal({ onClose }) {
                       });
                     }}
                   >
-                    Remove
+                    <FaDeleteLeft size={18}/>
                   </button>
                 </div>
               ))}
@@ -659,7 +660,7 @@ function CreatePostModal({ onClose }) {
                   {/* Rating */}
                   <input
                     type="number"
-                    placeholder="Rating (0-5)"
+                    placeholder="Rating"
                     value={hotel.rating || ""}
                     onChange={(e) =>
                       handleDynamicChange(
@@ -685,7 +686,7 @@ function CreatePostModal({ onClose }) {
                         "subLocations"
                       )
                     }
-                    className="w-40 p-2 border-2 border-gray-300 rounded-xl shadow-md"
+                    className="w-20 p-2 border-2 border-gray-300 rounded-xl shadow-md"
                   />
 
                   {/* Remove Button */}
@@ -701,7 +702,7 @@ function CreatePostModal({ onClose }) {
                       });
                     }}
                   >
-                    Remove
+                     <FaDeleteLeft size={18}/>
                   </button>
                 </div>
               ))}
@@ -733,9 +734,10 @@ function CreatePostModal({ onClose }) {
 
         {step === 7 && (
           <div>
-            <h2 className="text-[32px] font-bold mb-4">
-              Expenses & Recommendations
+            <h2 className="text-[32px] font-bold">
+              Expenses & 
             </h2>
+            <h2 className="text-[32px] font-bold mb-4" >Recommendations</h2>
 
             {/* Expenses Section */}
             <h3 className="text-lg font-bold mb-2">Expenses</h3>
@@ -783,7 +785,7 @@ function CreatePostModal({ onClose }) {
                     setFormData({ ...formData, expenses: updatedExpenses });
                   }}
                 >
-                  Remove
+                  <FaDeleteLeft size={18}/>
                 </button>
               </div>
             ))}
