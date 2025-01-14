@@ -1,74 +1,3 @@
-// import React from 'react';
-
-// const PostCard = () => {
-//   return (
-//     <div className="flex-1 h-full ml-3 mt-4 border border-black">
-//       <div className="flex h-full">
-//         {/* Picture Preview Section */}
-//         <div className="w-1/3 p-4">
-//           {/* Picture Preview */}
-//           <div className="border border-gray-300 h-40 mb-4"></div>
-//           {/* Additional Content (if any) */}
-//         </div>
-//         {/* Post Details Section */}
-//         <div className="w-2/3 p-4">
-//           {/* Post Caption */}
-//           <div className="mb-4">
-//             <h2 className="text-xl font-semibold">Post Title</h2>
-//             <p className="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis libero eget libero ultricies vehicula. Curabitur maximus massa et fringilla ultricies.</p>
-//           </div>
-//           {/* Other Post Details (Author, Date, etc.) */}
-//           <div className="flex items-center text-gray-600">
-//             <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-//               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 15l7-7 7 7"></path>
-//             </svg>
-//             <p>Posted by John Doe</p>
-//             <span className="mx-2">•</span>
-//             <p>May 5, 2024</p>
-//           </div>
-//           {/* Like, Comment, Share Icons */}
-//           <div className="flex mt-4">
-//             <button className="flex items-center mr-4 text-gray-600">
-//               <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-//                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
-//               </svg>
-//               <span>Like</span>
-//             </button>
-//             <button className="flex items-center mr-4 text-gray-600">
-//               <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-//                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 8h16M4 16h16"></path>
-//               </svg>
-//               <span>Comment</span>
-//             </button>
-//             <button className="flex items-center text-gray-600">
-//               <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-//                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-//               </svg>
-//               <span>Share</span>
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default PostCard;
-/* Asset 4@4x 2 */
-
-// position: absolute;
-// width: 600px;
-// height: 30px;
-
-// background: url(Asset 4@4x.png);
-// transform: rotate(90deg);
-
-
-
-
-
-
-
 
 
 import React, { useState } from 'react';
@@ -90,7 +19,7 @@ import share from '../../assets/share.png';
 import avatar from '../../assets/avatar.webp';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-const PostCard = ({ title, content, author, date }) => {
+const PostCard = ({ post }) => {
   const [selectedButton, setSelectedButton] = useState('Post');
 
   const handleButtonClick = (buttonName) => {
@@ -122,6 +51,7 @@ const PostCard = ({ title, content, author, date }) => {
     { type: 'image', src: Postimage3 },
     { type: 'image', src: topL1 }
   ];
+  console.log("post data", post);
   return  (
     <div className="flex-1 h-full mt-4 mb-4 flex flex-row">
       {/* Sidebar */}
@@ -151,38 +81,27 @@ const PostCard = ({ title, content, author, date }) => {
       <div className="flex flex-col lg:flex-row h-full mb-8 ml-3 relative w-5/6 lg:w-full">
       <div className="lg:flex lg:items-stretch w-full">
         {/* Picture Preview Section */}
-        {/* <div className="w-full lg:w-1/2 border border-gray-300 rounded-lg shadow-lg overflow-hidden relative">
-  <Carousel showThumbs={false} autoPlay infiniteLoop showStatus={false}>
-    {images.map((image, index) => (
-      <div 
-        key={index} 
-        className="relative w-full" 
-        style={{ paddingTop: '100%' }} // Maintains the 4:5 ratio
-      >
-        <img 
-          src={image} 
-          alt={`Slide ${index}`} 
-          className="absolute top-0 left-0 w-full h-full object-cover" 
-        />
-      </div>
-    ))}
-  </Carousel>
-</div> */}
- <div className="w-full lg:w-1/2 border border-gray-300 rounded-lg shadow-lg overflow-hidden relative">
-            <Carousel showThumbs={false} autoPlay infiniteLoop showStatus={false}>
-              {media.map((item, index) => (
-                <div key={index} className="relative w-full" style={{ paddingTop: '100%' }}>
-                  {item.type === 'image' ? (
-                    <img src={item.src} alt={`Slide ${index}`} className="absolute top-0 left-0 w-full h-full object-cover" />
-                  ) : item.type === 'video' ? (
-                    <video className="absolute top-0 left-0 w-full h-full object-cover" controls>
-                      <source src={item.src} type="video/mp4" />
-                    </video>
-                  ) : null}
-                </div>
-              ))}
-            </Carousel>
-          </div>
+        
+          <div className="w-full lg:w-1/2 border border-gray-300 rounded-lg shadow-lg overflow-hidden relative">
+  {post?.media?.length > 0 ? (
+    <Carousel showThumbs={false} autoPlay infiniteLoop showStatus={false}>
+      {post.media.map((url, index) => (
+        <div key={index} className="relative w-full" style={{ paddingTop: '100%' }}>
+          {url.endsWith(".mp4") || url.endsWith(".webm") || url.endsWith(".ogg") ? ( // Check if the URL is a video
+            <video className="absolute top-0 left-0 w-full h-full object-cover" controls>
+              <source src={url} type="video/mp4" />
+            </video>
+          ) : (
+            <img src={url} alt={`Slide ${index}`} className="absolute top-0 left-0 w-full h-full object-cover" />
+          )}
+        </div>
+      ))}
+    </Carousel>
+  ) : (
+    <p className="text-center py-4">No media available</p>
+  )}
+</div>
+
 
         {/* Spiral */}
         {/* <img src={DairySpiralImage} alt="Dairy Spiral" className="absolute lg:top-1/2 lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2 lg:w-16 lg:h-full top-0 left-1/2 transform -translate-x-1/2 w-full h-16 rotate-90 lg:rotate-0" /> */}
@@ -194,8 +113,8 @@ const PostCard = ({ title, content, author, date }) => {
           
           <div className="mb-4 p-4 rounded-t shadow-lg">
             
-            <h2 className="text-lg xl:text-xl font-semibold pl-6">{title}</h2>
-            <p className="text-gray-700 text-sm lg:text-base pl-6">{content}</p>
+            <h2 className="text-lg xl:text-xl font-semibold pl-6">{post?.mainLocation}</h2>
+            <p className="text-gray-700 text-sm lg:text-base pl-6">{post?.caption}</p>
           </div>
           <div className='flex p-2 space-x-2 lg:pl-9'>
             <button className={`rounded-lg bg-gray-400 text-gray-600 text-xs  p-2 flex ${selectedButton === 'Experience' ? 'bg-white border border-gray-400' : ''}`} onClick={() => handleButtonClick('Experience')}>
@@ -222,9 +141,9 @@ const PostCard = ({ title, content, author, date }) => {
               </svg>
               <p>{selectedButton}</p>
               <span className="mx-2">•</span>
-              <p>Posted by {author}</p>
+              <p>Posted by {post.user.username}</p>
               <span className="mx-2">•</span>
-              <p>{date}</p>
+              <p>{post.createdAt}</p>
             </div>
           </div>
           <div className="border border-gray-400 mx-2 ml-9">
@@ -303,101 +222,3 @@ export default PostCard;
 
 
 
-
-
-
-
-
-
-
-// import React, { useState } from 'react';
-// import DairySpiralImage from '../../images/spiral.png';
-// import Postimage from '../../images/AnshikaGoel.jpg';
-// import experience from '../../assets/experience.png';
-// import cost from '../../assets/cost.png';
-// import location from '../../assets/location.png';
-// import message from '../../assets/message.png';
-// import more from '../../assets/more.png';
-// import like from '../../assets/like.png';
-// const PostCard = ({ title, content, author, date }) => {
-//     const [selectedButton, setSelectedButton] = useState('Post'); // Default to Post
-
-//   const handleButtonClick = (buttonName) => {
-//     setSelectedButton(buttonName);
-//   };
-//   return (
-//     <div className="flex-1 h-full mt-4 mb-4">
-//       <div className="flex h-full mb-8 ml-3 relative">
-//         {/* Picture Preview Section */}
-//          <div className="w-1/2 border border-gray-300 h-full rounded-lg shadow-lg mr-2 ">
-//              {/* Picture Preview */}
-//             <div className="">
-//                 <img src={Postimage} alt="post" className="h-full w-full object-cover rounded-lg"/>
-//             </div>
-//               {/* Additional Content (if any) */}
-//           </div>
-//           {/* Spiral */}
-//           <img src={DairySpiralImage} alt="Dairy Spiral" className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-full" />
-//         {/* Post Details Section */}
-//         <div className="w-1/2 rounded-lg shadow-lg h-full">
-//           {/* Post Caption */}
-//           <div className="mb-4 p-4 rounded-t shadow-lg ">
-//             <h2 className="text-xl font-semibold pl-6">{title}</h2>
-//             <p className="text-gray-700 pl-6">{content}</p>
-//           </div>
-//           <div className='flex p-2 space-x-2 pl-9'>
-//              {/* <button className='rounded-lg bg-gray-400 text-gray-600 p-2'>Experience</button>
-//              <button className='rounded-lg bg-gray-400 text-gray-600 p-2'>Cost</button>
-//              <button className='rounded-lg bg-gray-400 text-gray-600 p-2'>Places</button>
-//              <button className='rounded-lg bg-gray-400 text-gray-600 p-2'>Messages</button> */}
-//               <button className={`rounded-lg bg-gray-400 text-gray-600 p-2 flex ${selectedButton === 'Experience' ? 'bg-white border border-gray-400' : ''}`} onClick={() => handleButtonClick('Experience')}> <img src={experience} className='m-1 w-5' alt=''/>Experience</button>
-//             <button className={`rounded-lg bg-gray-400 text-gray-600 p-2 flex ${selectedButton === 'Cost' ? 'bg-white border border-gray-400' : ''}`} onClick={() => handleButtonClick('Cost')}><img src={cost} className='m-1 w-5' alt=''/>Cost</button>
-//             <button className={`rounded-lg bg-gray-400 text-gray-600 p-2 flex ${selectedButton === 'Places' ? 'bg-white border border-gray-400' : ''}`} onClick={() => handleButtonClick('Places')}><img src={location} className='m-1 w-5' alt=''/>Places</button>
-//             <button className={`rounded-lg bg-gray-400 text-gray-600 p-2 flex ${selectedButton === 'Messages' ? 'bg-white border border-gray-400' : ''}`} onClick={() => handleButtonClick('Messages')}><img src={message} className='m-1 w-5' alt=''/>Messages</button>
-//             <button className={`rounded-lg bg-gray-400 text-gray-600 p-2 flex ${selectedButton === 'More' ? 'bg-white border border-gray-400' : ''}`} onClick={() => handleButtonClick('More')}><img src={more} className='m-1 w-5' alt=''/></button>
-//           </div>
-//           <div className="rounded-t-lg border border-gray-400 mx-2 ml-9">
-//              {/* Other Post Details (Experience, Cost, Place, Message etc.) */}
-//               <div className="flex items-center text-gray-600 p-4">
-//                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-//                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 15l7-7 7 7"></path>
-//                   </svg>
-//                   <p>{selectedButton}</p>
-//                   <span className="mx-2">•</span>
-//                       <p>Posted by {author}</p>
-//                     <span className="mx-2">•</span>
-//                    <p>{date}</p>
-//                    {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, debitis. Nostrum qui alias molestias porro. Architecto autem tenetur quidem minus neque doloremque, velit atque incidunt ad expedita aliquam veniam quaerat cumque sit?
-//                    </p> */}
-//                 </div>
-            
-//            </div>
-//            <div className="rounded-b-lg border border-gray-400 mx-2 border-collapse ml-9">
-//                     {/* Like, Comment, Share Icons */}
-//           <div className="flex mt-4">
-//             <button className="flex items-center mr-4 text-gray-600">
-//             <img src={like} className='m-1 w-6' alt=''/>
-//               <span>Like</span>
-//             </button>
-//             <button className="flex items-center mr-4 text-gray-600">
-//               <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-//                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 8h16M4 16h16"></path>
-//               </svg>
-//               <span>Comment</span>
-//             </button>
-//             <button className="flex items-center text-gray-600">
-//               <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-//                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-//               </svg>
-//               <span>Share</span>
-//             </button>
-//           </div>
-//            </div>
-          
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default PostCard;
