@@ -276,14 +276,6 @@ function MainPage() {
           </div>
         </div>
         
-        {/* Right Section */}
-        {/* <div className="ml-0 xl:ml-64 w-full">
-          <div className="w-full overflow-y-auto" style={{ maxHeight: 'calc(100vh - 60px)' }}>
-            {posts.map(post => (
-              <PostCard key={post.id} title={post.title} content={post.content} author={post.author} date={post.date} />
-            ))}
-          </div>
-        </div> */}
         <div className="ml-0 xl:ml-64 w-full">
     <div
       className="w-full overflow-y-auto"
@@ -294,10 +286,7 @@ function MainPage() {
          
           <PostCard
             key={post._id}
-            title={post.mainLocation}
-            content={post.caption}
-            author={post.user.username}
-            date={post.createdAt}
+            post={post}
           />
         ))
       ) : (
