@@ -153,8 +153,8 @@ const ProfileCard = () => {
   }, [dispatch]);
 
   return (
-    <div className="max-w-xs ml-3">
-      <div className="relative rounded-xl shadow-md border-2 border-[#9A9494] top-11">
+    <div className="max-w-xs ml-2 mt-3">
+      <div className="relative rounded-lg shadow-md border border-[#9A9494] top-11">
         {/* Avatar */}
         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mb-5">
           <img
@@ -184,7 +184,7 @@ const ProfileCard = () => {
           </div>
 
           {/* Bio */}
-          <p className="flex justify-center text-gray-700 text-[12px] mt-5">
+          <p className="flex justify-center text-[13px] opacity-70 mt-5">
             {user?.bio || 'Add a bio to your profile.'}
           </p>
         </div>
