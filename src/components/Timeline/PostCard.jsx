@@ -25,6 +25,9 @@ import { FaCircleDollarToSlot } from "react-icons/fa6";
 import { MdFoodBank } from "react-icons/md";
 import { AiFillLike } from "react-icons/ai";
 import { IoPersonCircleSharp } from "react-icons/io5";
+import { Heart } from 'lucide-react';
+import { MessageCircle } from 'lucide-react';
+import { Share } from 'lucide-react';
 
 const PostCard = ({ post }) => {
   const [selectedButton, setSelectedButton] = useState("Post");
@@ -39,14 +42,16 @@ const PostCard = ({ post }) => {
   const handlelike = async () => {
     try {
       // Send PATCH request to like or unlike the post
-      const response = await fetch(`http://localhost:5000/posts/${post._id}/like`, {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${token}`, 
-        },
-      
-      });
-      console.log("res",response.json());
+      const response = await fetch(
+        `http://localhost:5000/posts/${post._id}/like`,
+        {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("res", response.json());
       // const response = await axios.patch(`/api/posts/${postId}/like`, {}, {
       //   headers: {
       //     Authorization: `Bearer ${localStorage.getItem('token')}`, // Assuming you store the token in localStorage
@@ -57,8 +62,8 @@ const PostCard = ({ post }) => {
       setLiked((prevLiked) => !prevLiked);
       // alert(response.data.message); // Show success message from the backend
     } catch (error) {
-      console.error('Error liking post:', error);
-      alert('An error occurred while liking the post');
+      console.error("Error liking post:", error);
+      alert("An error occurred while liking the post");
     }
   };
   const [rating, setRating] = useState(4);
@@ -129,7 +134,7 @@ const PostCard = ({ post }) => {
         <div className="lg:flex lg:items-stretch w-full">
           {/* Picture Preview Section */}
 
-          <div className="w-full lg:w-1/2 border border-gray-300 rounded-lg shadow-lg overflow-hidden relative">
+          <div className="w-full lg:w-1/2 mt-2 border border-gray-300 rounded-lg shadow-lg overflow-hidden relative">
             {post?.media?.length > 0 ? (
               <Carousel
                 showThumbs={false}
@@ -172,7 +177,7 @@ const PostCard = ({ post }) => {
           <img
             src={DairySpiralImage}
             alt="Dairy Spiral"
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-full hidden lg:block"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-full hidden lg:block opacity-60"
           />
           {/* <img src={DairySpiralImage2} alt="Dairy Spiral" className="absolute top-96 left-1/2 transform -translate-x-1/2 w-full h-16 lg:hidden" /> */}
           {/* Post Details Section */}
@@ -181,19 +186,22 @@ const PostCard = ({ post }) => {
 
             <div className="p-4 -mb-3">
               <div className="mb-2 ml-4 flex justify-start items-center align-items-center">
-                <IoPersonCircleSharp size={40}/>
-               <div className="ml-1 -mt-2"> <p className="font-semibold text-[20px]">{post.user.username}</p>
-               <p className="text-[8px] -mt-1">2 hours ago</p></div>
+                <IoPersonCircleSharp size={40} />
+                <div className="ml-1 -mt-1">
+                  {" "}
+                  <p className="font-semibold text-medium">
+                    {post.user.username}
+                  </p>
+                  <p className="text-[10px] -mt-[1px]">2 hours ago</p>
                 </div>
-                
-              <h2 className="text-[20px] font-semibold pl-6">
+              </div>
+              <hr className="border-gray-300 mb-2 mt-2"/>
+              <h2 className="text-medium font-semibold pl-6 ">
                 {post.mainLocation}
               </h2>
-              <p className="text-gray-700 text-sm lg:text-[14px] pl-6">
-                {post.caption}
-              </p>
+              <p className="text-gray-700 text-[14px] pl-6">{post.caption}</p>
             </div>
-            <div className="flex p-2 space-x-2 lg:pl-9 mb-2">
+            <div className="flex p-2 space-x-2 lg:pl-9">
               <button
                 className={`rounded-lg bg-pink-200 border-2 border-gray-300 text-gray-600 text-[12px] items-center h-10 px-2  flex ${
                   selectedButton === "Experience"
@@ -203,9 +211,8 @@ const PostCard = ({ post }) => {
                 onClick={() => handleButtonClick("Experience")}
               >
                 <div className="m-1">
-                <BsFillPersonVcardFill size={18}/>
+                  <BsFillPersonVcardFill size={18} />
                 </div>
-
                 Experience
               </button>
 
@@ -218,7 +225,7 @@ const PostCard = ({ post }) => {
                 onClick={() => handleButtonClick("Places")}
               >
                 <div className="m-1">
-                <FaMapLocationDot size={18}/>
+                  <FaMapLocationDot size={18} />
                 </div>
                 Places
               </button>
@@ -231,7 +238,7 @@ const PostCard = ({ post }) => {
                 onClick={() => handleButtonClick("Cost")}
               >
                 <div className="m-1">
-                <FaCircleDollarToSlot size={18}/>
+                  <FaCircleDollarToSlot size={18} />
                 </div>
                 Expenses
               </button>
@@ -244,7 +251,7 @@ const PostCard = ({ post }) => {
                 onClick={() => handleButtonClick("Messages")}
               >
                 <div className="m-1">
-                <MdFoodBank size={20}/>
+                  <MdFoodBank size={20} />
                 </div>
                 Food/Stay
               </button>
@@ -257,14 +264,14 @@ const PostCard = ({ post }) => {
                 onClick={() => handleButtonClick("More")}
               >
                 <div className="m-1">
-                <AiFillLike size={20}/>
+                  <AiFillLike size={20} />
                 </div>
                 Recommendation
               </button>
             </div>
             <div className="mx-2 ml-9">
               {/* Other Post Details (Experience, Cost, Place, Message etc.) */}
-              <div className="flex items-center text-gray-600 p-4 text-[12px]">
+              <div className="flex items-center text-gray-600 my-2 mb-[12px] text-[13px] font-semibold">
                 <svg
                   className="w-4 h-4 mr-2"
                   fill="none"
@@ -286,9 +293,9 @@ const PostCard = ({ post }) => {
                 <p>{post.createdAt}</p>
               </div>
             </div>
-            <div className="mx-2 ml-9 rounded-xl border-2 border-gray-300 shadow-md">
-           
-              <div className="px-4 py-2 text-[14px]">
+            <hr className="border-gray-300 mb-2 mt-2"/>
+            <div className="mx-2 ml-9  text-gray-600 pl-2 text-[14px]">
+              <div className="mt-2">
                 <p>
                   Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                   Cumque odio molestiae consequatur labore error. Ab quaerat
@@ -303,26 +310,26 @@ const PostCard = ({ post }) => {
                 </p>
               </div>
             </div>
-            <div className="mx-2 ml-9 text-sm">
+            <div className="mx-2 ml-9 ">
               {/* Like, Comment, Share Icons */}
               <div className="flex px-2 py-2 justify-start items-center mt-2">
                 <button className="flex items-center justify-center align-items-center mr-4 text-gray-600">
-                  <img src={like} className="m-1 w-6 " alt="" />
-                  <span className=" text-[11px] -mt-1 ml-1">Like</span>
+                <Heart size={20}/>
+                  {/* <span className=" text-[11px] -mt-1 ml-1">Like</span> */}
                 </button>
                 <button className="flex items-center mr-4 text-gray-600">
                   {/* <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 8h16M4 16h16"></path>
                 </svg> */}
-                  <img src={comment} className="m-1 w-6" alt="" />
-                  <span className=" text-[11px] -mt-1 ml-1">Comment</span>
+                   <MessageCircle size={20}/>
+                  {/* <span className=" text-[11px] -mt-1 ml-1">Comment</span> */}
                 </button>
                 <button className="flex items-center text-gray-600">
                   {/* <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                 </svg> */}
-                  <img src={share} className="m-1 w-6" alt="" />
-                  <span className=" text-[11px] -mt-1 ml-1">Share</span>
+                   <Share size={19}/>
+                  {/* <span className=" text-[11px] -mt-1 ml-1">Share</span> */}
                 </button>
               </div>
             </div>

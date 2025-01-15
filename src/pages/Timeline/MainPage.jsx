@@ -278,11 +278,11 @@ function MainPage() {
 
       {/* Left Section */}
       <div className="flex overflow-hidden">
-        <div className="w-[17%] hidden z-50 xl:block mx-2">
+        <div className="w-[18%] hidden z-50 xl:block mx-4">
           <div className=" ">
             <ProfileCard />
           </div>
-          <div className="mt-[40px]">
+          <div className="mt-[55px]">
             <MenuCard />
           </div>
         </div>

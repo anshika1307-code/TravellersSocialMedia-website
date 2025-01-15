@@ -7,6 +7,9 @@ import avatar from '../../assets/avatar.webp';
 import noti from '../../assets/noti.png';
 import messageBox from '../../assets/messageBox.png';
 import { useDispatch, useSelector } from 'react-redux';
+import { MessageCircleMore } from 'lucide-react'
+import { Bell } from 'lucide-react';
+
 const Nav = ({ toggleMessageList, unreadCount, toggleNotification, newNoti }) => {
  
   const user = useSelector((state) => state.authReducer.authData?.user);
@@ -43,9 +46,11 @@ const Nav = ({ toggleMessageList, unreadCount, toggleNotification, newNoti }) =>
           className="text-white hover:text-gray-300 mr-2 focus:outline-none relative"
           onClick={toggleMessageList}
         >
-          <img className="w-8 lg:w-9" src={messageBox} alt="messageBox" />
+          <div className='bg-[#212021] p-2 rounded-full'>
+          <MessageCircleMore />
+          </div>
           {unreadCount > 0 && (
-            <span className="absolute top-0 right-0 inline-flex items-center justify-center p-1 text-[11px] font-bold leading-none text-red-100 bg-red-600 rounded-full">
+            <span className="absolute top-0 right-0 inline-flex items-center justify-center p-1 text-[10px] font-bold leading-none text-red-100 bg-red-600 rounded-full">
               {unreadCount}
             </span>
           )}
@@ -55,9 +60,11 @@ const Nav = ({ toggleMessageList, unreadCount, toggleNotification, newNoti }) =>
           className="text-white hover:text-gray-300 focus:outline-none relative"
           onClick={toggleNotification}
         >
-          <img className="w-8 lg:w-9" src={noti} alt="noti" />
+          <div className='bg-[#212021] p-2 rounded-full'>
+          <Bell />
+          </div>
           {newNoti > 0 && (
-            <span className="absolute top-0 right-0 inline-flex items-center justify-center p-1 text-[11px] font-bold leading-none text-red-100 bg-red-600 rounded-full">
+            <span className="absolute top-0 right-0 inline-flex items-center justify-center p-1 text-[10px] font-bold leading-none text-red-100 bg-red-600 rounded-full">
               {newNoti}
             </span>
           )}
@@ -65,7 +72,7 @@ const Nav = ({ toggleMessageList, unreadCount, toggleNotification, newNoti }) =>
         {/* Profile icon */}
         <a href="#" className="text-white hover:text-gray-300">
           <img
-            className="w-8 h-8 lg:h-11 lg:w-11 mx-2 rounded-full"
+            className="w-8 h-8 lg:h-10 lg:w-10 mx-2 rounded-full"
             src={user?.profilePic || 'https://via.placeholder.com/150'}
             alt="Home"
           />
