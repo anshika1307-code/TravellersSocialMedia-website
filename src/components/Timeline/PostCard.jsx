@@ -17,6 +17,8 @@ import share from "../../assets/share.png";
 import avatar from "../../assets/avatar.webp";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { useDispatch, useSelector } from "react-redux";
+
 import { BsFillPersonVcardFill } from "react-icons/bs";
 import { FaMapLocationDot } from "react-icons/fa6";
 import { FaCircleDollarToSlot } from "react-icons/fa6";
@@ -29,6 +31,35 @@ const PostCard = ({ post }) => {
 
   const handleButtonClick = (buttonName) => {
     setSelectedButton(buttonName);
+  };
+  const [liked, setLiked] = useState(false);
+  const token = useSelector((state) => state.authReducer.authData?.token);
+  console.log("post id", post._id);
+  console.log("post id in num", Number(post._id));
+  const handlelike = async () => {
+    try {
+      // Send PATCH request to like or unlike the post
+      const response = await fetch(`http://localhost:5000/posts/${post._id}/like`, {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`, 
+        },
+      
+      });
+      console.log("res",response.json());
+      // const response = await axios.patch(`/api/posts/${postId}/like`, {}, {
+      //   headers: {
+      //     Authorization: `Bearer ${localStorage.getItem('token')}`, // Assuming you store the token in localStorage
+      //   },
+      // });
+
+      // Toggle the like state
+      setLiked((prevLiked) => !prevLiked);
+      // alert(response.data.message); // Show success message from the backend
+    } catch (error) {
+      console.error('Error liking post:', error);
+      alert('An error occurred while liking the post');
+    }
   };
   const [rating, setRating] = useState(4);
   const percentage = ((rating - 1) / 4) * 100;

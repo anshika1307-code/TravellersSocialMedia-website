@@ -1,14 +1,15 @@
-import React from "react";
-import logo from "../../assets/logo.png";
-import avatar from "../../assets/avatar.webp";
-import noti from "../../assets/noti.png";
-import messageBox from "../../assets/messageBox.png";
-const Nav = ({
-  toggleMessageList,
-  unreadCount,
-  toggleNotification,
-  newNoti,
-}) => {
+
+
+
+import React from 'react';
+import logo from '../../assets/logo.png';
+import avatar from '../../assets/avatar.webp';
+import noti from '../../assets/noti.png';
+import messageBox from '../../assets/messageBox.png';
+import { useDispatch, useSelector } from 'react-redux';
+const Nav = ({ toggleMessageList, unreadCount, toggleNotification, newNoti }) => {
+ 
+  const user = useSelector((state) => state.authReducer.authData?.user);
   return (
     <nav className="flex items-center flex-wrap bg-[#F2F0E3] py-3 px-[25px] border-b-2 border-gray-300">
       {/* Hamburger icon for small screens */}
@@ -64,8 +65,8 @@ const Nav = ({
         {/* Profile icon */}
         <a href="#" className="text-white hover:text-gray-300">
           <img
-            className="w-8 lg:w-9 mx-2 rounded-full"
-            src={avatar}
+            className="w-8 h-8 lg:h-11 lg:w-11 mx-2 rounded-full"
+            src={user?.profilePic || 'https://via.placeholder.com/150'}
             alt="Home"
           />
         </a>
