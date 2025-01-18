@@ -188,7 +188,12 @@ const PostCard = ({ post }) => {
 
             <div className="flex justify-between px-4 py-2 shadow-md mb-3 -ml-2">
               <div className="ml-4 flex justify-start items-center align-items-center gap-2">
-                <IoPersonCircleSharp size={45} />
+                {/* <IoPersonCircleSharp size={45} /> */}
+                <img
+            className="rounded-full w-12 h-12"
+            src={post.user?.profilePic || 'https://via.placeholder.com/150'}
+            alt="Avatar"
+          />
                 <div>
                   <p className="text-[18px]">{post.user.username}</p>
                   <p className="text-[9px]">2 hours ago</p>
@@ -276,10 +281,10 @@ const PostCard = ({ post }) => {
                       <div className="flex gap-3">
                         <h1 className="text-[16px]">Overall Experience</h1>
                         <p className="bg-gray-300 px-3 py-2 rounded-xl text-[9px]">
-                          Duration - 4 Days
+                        <span>Duration -</span> {post.duration} <span>days</span>
                         </p>
                         <p className="bg-gray-300 px-3 py-2 rounded-xl text-[9px]">
-                          Duration - 4 Days
+                          Budget - Medium
                         </p>
                       </div>
                       <div className="flex items-center gap-1 mr-3">
@@ -345,7 +350,7 @@ const PostCard = ({ post }) => {
                       <div className="flex gap-3">
                         <h1 className="text-[16px]">Food/Stay</h1>
                         <p className="bg-gray-300 px-3 py-2 rounded-xl text-[9px]">
-                          Duration - 4 Days
+                          <span>Duration -</span> {post.duration} <span>days</span>
                         </p>
                         <p className="bg-gray-300 px-3 py-2 rounded-xl text-[9px]">
                           Duration - 4 Days
@@ -413,7 +418,7 @@ const PostCard = ({ post }) => {
                 <button className="flex items-center justify-center align-items-center mr-4 text-gray-600 gap-2">
                   <Heart size={28} />
                   <div className="flex flex-col items-center">
-                    <span className=" text-[16px] font-bold">150</span>
+                    <span className=" text-[16px] font-bold">{post.likes?.length}</span>
                     <span className=" text-[10px]">Likes</span>
                   </div>
                 </button>
@@ -423,7 +428,7 @@ const PostCard = ({ post }) => {
                 >
                   <MessageCircle size={28} />
                   <div className="flex flex-col items-center">
-                    <span className=" text-[16px] font-bold">90</span>
+                    <span className=" text-[16px] font-bold">{post.comments?.length}</span>
                     <span className=" text-[10px]">comments</span>
                   </div>
                 </button>
