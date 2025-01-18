@@ -136,7 +136,7 @@ const PostCard = ({ post }) => {
         <div className="lg:flex lg:items-stretch w-full">
           {/* Picture Preview Section */}
 
-          <div className="w-full lg:w-1/2 mt-2 border border-gray-300 rounded-lg shadow-lg overflow-hidden relative">
+          <div className="w-full lg:w-1/2 mt-2 border border-gray-300 rounded-2xl shadow-lg overflow-hidden relative">
             {post?.media?.length > 0 ? (
               <Carousel
                 showThumbs={false}
@@ -399,7 +399,7 @@ const PostCard = ({ post }) => {
                       </div>
                     </div>
                     <hr className="my-4" />
-                    <div className="max-h-[300px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
+                    <div className="max-h-[29vh] xl:max-h-[42vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
                       <CommentsSection />
                     </div>
                   </div>
@@ -407,9 +407,9 @@ const PostCard = ({ post }) => {
               </div>
             </div>
 
-            <div className="ml-7 border-t-0 border-2 mr-4 rounded-xl rounded-t-none ">
+            <div className="ml-7 border-t-0 border-2 mr-4 rounded-xl rounded-t-none z-10">
               {/* Like, Comment, Share Icons */}
-              <div className="flex py-2 justify-between items-center px-5 mt-auto">
+              <div className="flex py-2 justify-between items-center px-5 mt-auto z-10">
                 <button className="flex items-center justify-center align-items-center mr-4 text-gray-600 gap-2">
                   <Heart size={28} />
                   <div className="flex flex-col items-center">

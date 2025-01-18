@@ -154,7 +154,8 @@ const ProfileCard = () => {
 
   return (
     <div className="max-w-xs ml-2 mt-3">
-      <div className="relative rounded-lg shadow-md border border-[#9A9494] top-11">
+      <div className="relative top-11">
+      <div className='bg-white/60 rounded-xl shadow-md border-2 border-gray-700/15'>
         {/* Avatar */}
         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mb-5">
           <img
@@ -164,7 +165,7 @@ const ProfileCard = () => {
           />
         </div>
         {/* Details */}
-        <div className="px-6 py-4 pt-9 border-b border-gray-300">
+        <div className="px-6 py-4 pt-9 ">
           {/* Name */}
           <div className="font-bold text-xl mb-2 text-center mt-5">
             {user?.username || 'Username'}
@@ -187,6 +188,7 @@ const ProfileCard = () => {
           <p className="flex justify-center text-[13px] opacity-70 mt-5">
             {user?.bio || 'Add a bio to your profile.'}
           </p>
+        </div>
         </div>
       </div>
     </div>

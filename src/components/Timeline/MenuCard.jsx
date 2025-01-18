@@ -63,10 +63,12 @@ import { ImagePlus } from 'lucide-react';
 import { SquareKanban } from 'lucide-react';
 import { CalendarFold } from 'lucide-react';
 import { Users } from 'lucide-react';
+import { useLocation } from "react-router-dom";
 
 const MenuCard = () => {
   const [showModal, setShowModal] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  const location = useLocation();
   const handleCreatePost = () => {
     setShowModal(true);
   };
@@ -75,39 +77,41 @@ const MenuCard = () => {
     setShowModal(false);
   };
 
+  const isActive = (path) => location.pathname === path;
+
   return (
-    <div className="max-w-xs ml-3 mt-4 p-3 text-[12px]">
-      <ul>
-        <li className="flex items-center mb-5 gap-4 justify-start">
+    <div className="max-w-xs ml-3 mt-4 p-3 text-[12px] bg-white/60 rounded-xl">
+      <ul className="border-2 border-gray-700/15 p-3 rounded-lg">
+        <li className="flex items-center mb-2 gap-2 p-2 justify-start">
           {/* <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
           </svg> */}
           <BadgePlus size={25} color="orange" strokeWidth={2.5}/>
           <button onClick={handleCreatePost}>Create</button>
         </li>
-        <li className="flex items-center mb-7 gap-4 justify-start">
+        <li className={`flex items-center mb-3 gap-2 p-2 justify-start ${isActive("/Timeline") ? "bg-gray-200 rounded-md" : ""}`}>
         <House size={25} color="green" strokeWidth={2.5}/>
           <a href="#">Home</a>
         </li>
-        <li className="flex items-center mb-7 gap-4 justify-start">
+        <li className="flex items-center mb-3 gap-2 p-2 justify-start">
         <LandPlot size={25} color="gray" strokeWidth={2.5}/>
           <a href="#">Flag</a>
         </li>
-        <li className="flex items-center mb-7 gap-4 justify-start">
+        <li className="flex items-center mb-3 gap-2 p-2 justify-start">
         <ImagePlus size={25} color="purple" strokeWidth={2.5}/>
           <button onClick={() => setShowForm(true)} className=" rounded-lg">
             Create Travel Story
           </button>
         </li>
-        <li className="flex items-center mb-7 gap-4 justify-start">
+        <li className="flex items-center mb-3 gap-2 p-2 justify-start">
         <SquareKanban size={25} color="red" strokeWidth={2.5}/>
           <a href="#">Travel Plans</a>
         </li>
-        <li className="flex items-center mb-7 gap-4 justify-start">
+        <li className="flex items-center mb-3 gap-2 p-2 justify-start">
         <CalendarFold size={25} color="orange" strokeWidth={2.5}/>
           <a href="#">Events</a>
         </li>
-        <li className="flex items-center mb-7 gap-4 justify-start">
+        <li className="flex items-center mb-3 gap-2 p-2 justify-start">
         <Users size={25} color="gray" strokeWidth={2.5}/>
           <a href="#">Find Friends</a>
         </li>
