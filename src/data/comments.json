@@ -1,0 +1,66 @@
+[
+    {
+      "id": 1,
+      "profileImage": "https://example.com/images/user1.jpg",
+      "name": "John Doe",
+      "comment": "This is such an amazing video! Thanks for sharing!",
+      "likes": 120,
+      "replies": [
+        {
+          "id": 1.1,
+          "profileImage": "https://example.com/images/user2.jpg",
+          "name": "Jane Smith",
+          "comment": "I totally agree with you, John!",
+          "likes": 45
+        },
+        {
+          "id": 1.2,
+          "profileImage": "https://example.com/images/user3.jpg",
+          "name": "Chris Lee",
+          "comment": "Yes, this video is so informative.",
+          "likes": 30
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "profileImage": "https://example.com/images/user4.jpg",
+      "name": "Emily Brown",
+      "comment": "Can someone explain the part about XYZ? I didn’t quite get it.",
+      "likes": 75,
+      "replies": [
+        {
+          "id": 2.1,
+          "profileImage": "https://example.com/images/user5.jpg",
+          "name": "Michael Scott",
+          "comment": "Sure, I’ll try to explain it for you!",
+          "likes": 20
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "profileImage": "https://example.com/images/user6.jpg",
+      "name": "Sarah Connor",
+      "comment": "Loved this video! Keep up the great work!",
+      "likes": 95,
+      "replies": []
+    },
+    {
+      "id": 4,
+      "profileImage": "https://example.com/images/user7.jpg",
+      "name": "Jake Peralta",
+      "comment": "The editing was on point. Great job!",
+      "likes": 60,
+      "replies": [
+        {
+          "id": 4.1,
+          "profileImage": "https://example.com/images/user8.jpg",
+          "name": "Terry Jeffords",
+          "comment": "Agreed! The transitions were so smooth.",
+          "likes": 15
+        }
+      ]
+    }
+  ]
+  

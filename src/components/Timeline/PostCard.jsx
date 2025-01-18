@@ -25,13 +25,15 @@ import { FaCircleDollarToSlot } from "react-icons/fa6";
 import { MdFoodBank } from "react-icons/md";
 import { AiFillLike } from "react-icons/ai";
 import { IoPersonCircleSharp } from "react-icons/io5";
-import { Heart } from 'lucide-react';
-import { MessageCircle } from 'lucide-react';
-import { Share } from 'lucide-react';
+import { Heart } from "lucide-react";
+import { MessageCircle } from "lucide-react";
+import { Share } from "lucide-react";
+import { Star } from "lucide-react";
+import CommentsSection from "../CommentSection";
+
 
 const PostCard = ({ post }) => {
   const [selectedButton, setSelectedButton] = useState("Post");
-
   const handleButtonClick = (buttonName) => {
     setSelectedButton(buttonName);
   };
@@ -149,8 +151,8 @@ const PostCard = ({ post }) => {
                     style={{ paddingTop: "100%" }}
                   >
                     {url.endsWith(".mp4") ||
-                    url.endsWith(".webm") ||
-                    url.endsWith(".ogg") ? ( // Check if the URL is a video
+                      url.endsWith(".webm") ||
+                      url.endsWith(".ogg") ? ( // Check if the URL is a video
                       <video
                         className="absolute top-0 left-0 w-full h-full object-cover"
                         controls
@@ -181,33 +183,32 @@ const PostCard = ({ post }) => {
           />
           {/* <img src={DairySpiralImage2} alt="Dairy Spiral" className="absolute top-96 left-1/2 transform -translate-x-1/2 w-full h-16 lg:hidden" /> */}
           {/* Post Details Section */}
-          <div className="w-full lg:w-[47%]  h-full">
+          <div className="w-full lg:w-[47%] shadow-lg bg-white/60 rounded-xl mt-2 border-2">
             {/* Post Caption */}
 
-            <div className="p-4 -mb-3">
-              <div className="mb-2 ml-4 flex justify-start items-center align-items-center">
-                <IoPersonCircleSharp size={40} />
-                <div className="ml-1 -mt-1">
-                  {" "}
-                  <p className="font-semibold text-medium">
-                    {post.user.username}
-                  </p>
-                  <p className="text-[10px] -mt-[1px]">2 hours ago</p>
+            <div className="flex justify-between px-4 py-2 shadow-md mb-3 -ml-2">
+              <div className="ml-4 flex justify-start items-center align-items-center gap-2">
+                {/* <IoPersonCircleSharp size={45} /> */}
+                <img
+                  className="rounded-full w-12 h-12"
+                  src={post.user?.profilePic || 'https://via.placeholder.com/150'}
+                  alt="Avatar"
+                />
+                <div>
+                  <p className="text-[18px]">{post.user.username}</p>
+                  <p className="text-[9px]">2 hours ago</p>
                 </div>
               </div>
-              <hr className="border-gray-300 mb-2 mt-2"/>
-              <h2 className="text-medium font-semibold pl-6 ">
+              <h2 className="text-[18px] font-semibold pr-1">
                 {post.mainLocation}
               </h2>
-              <p className="text-gray-700 text-[14px] pl-6">{post.caption}</p>
             </div>
-            <div className="flex p-2 space-x-2 lg:pl-9">
+            <div className="flex p-2 gap-2 lg:pl-7 flex-wrap">
               <button
-                className={`rounded-lg bg-pink-200 border-2 border-gray-300 text-gray-600 text-[12px] items-center h-10 px-2  flex ${
-                  selectedButton === "Experience"
+                className={`rounded-lg bg-pink-200 border-2 border-gray-300 text-gray-600 text-[10px] items-center h-10 px-2  flex ${selectedButton === "Experience"
                     ? "bg-white border border-gray-400"
                     : ""
-                }`}
+                  }`}
                 onClick={() => handleButtonClick("Experience")}
               >
                 <div className="m-1">
@@ -217,11 +218,10 @@ const PostCard = ({ post }) => {
               </button>
 
               <button
-                className={`rounded-lg bg-blue-200 border-2 border-gray-300 text-gray-600 px-2 py-1 text-[12px] h-10 items-center flex ${
-                  selectedButton === "Places"
+                className={`rounded-lg bg-blue-200 border-2 border-gray-300 text-gray-600 px-2 py-1 text-[10px] h-10 items-center flex ${selectedButton === "Places"
                     ? "bg-white border border-gray-400"
                     : ""
-                }`}
+                  }`}
                 onClick={() => handleButtonClick("Places")}
               >
                 <div className="m-1">
@@ -230,12 +230,11 @@ const PostCard = ({ post }) => {
                 Places
               </button>
               <button
-                className={`rounded-lg bg-green-200 border-2 border-gray-300 text-gray-600 px-2 py-1 text-[12px] h-10 items-center flex ${
-                  selectedButton === "Cost"
+                className={`rounded-lg bg-green-200 border-2 border-gray-300 text-gray-600 px-2 py-1 text-[10px] h-10 items-center flex ${selectedButton === "Expenses"
                     ? "bg-white border border-gray-400"
                     : ""
-                }`}
-                onClick={() => handleButtonClick("Cost")}
+                  }`}
+                onClick={() => handleButtonClick("Expenses")}
               >
                 <div className="m-1">
                   <FaCircleDollarToSlot size={18} />
@@ -243,12 +242,11 @@ const PostCard = ({ post }) => {
                 Expenses
               </button>
               <button
-                className={`rounded-lg bg-orange-200 border-2 border-gray-300 text-gray-600 px-2 py-1 text-[12px] h-10 items-center flex ${
-                  selectedButton === "Messages"
+                className={`rounded-lg bg-orange-200 border-2 border-gray-300 text-gray-600 px-2 py-1 text-[10px] h-10 items-center flex ${selectedButton === "Food/Stay"
                     ? "bg-white border border-gray-400"
                     : ""
-                }`}
-                onClick={() => handleButtonClick("Messages")}
+                  }`}
+                onClick={() => handleButtonClick("Food/Stay")}
               >
                 <div className="m-1">
                   <MdFoodBank size={20} />
@@ -256,12 +254,11 @@ const PostCard = ({ post }) => {
                 Food/Stay
               </button>
               <button
-                className={`rounded-lg bg-red-200 border-2 border-gray-300 text-gray-600 px-2 py-1 flex text-[12px] h-10 items-center ${
-                  selectedButton === "More"
+                className={`rounded-lg bg-red-200 border-2 border-gray-300 text-gray-600 px-2 py-1 flex text-[10px] h-10 items-center ${selectedButton === "Recommendation"
                     ? "bg-white border border-gray-400"
                     : ""
-                }`}
-                onClick={() => handleButtonClick("More")}
+                  }`}
+                onClick={() => handleButtonClick("Recommendation")}
               >
                 <div className="m-1">
                   <AiFillLike size={20} />
@@ -269,67 +266,179 @@ const PostCard = ({ post }) => {
                 Recommendation
               </button>
             </div>
-            <div className="mx-2 ml-9">
-              {/* Other Post Details (Experience, Cost, Place, Message etc.) */}
-              <div className="flex items-center text-gray-600 my-2 mb-[12px] text-[13px] font-semibold">
-                <svg
-                  className="w-4 h-4 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M5 15l7-7 7 7"
-                  ></path>
-                </svg>
-                <p>{selectedButton}</p>
-                <span className="mx-2">•</span>
-                <p>Posted by {post.user.username}</p>
-                <span className="mx-2">•</span>
-                <p>{post.createdAt}</p>
+
+            <div className="mx-4 ml-7 px-3 mt-3 border-2 py-3 rounded-xl rounded-b-none h-[26vw]">
+              <div className="flex items-center mb-[12px] text-[13px]">
+                {/* //Experience */}
+                {selectedButton === "Experience" && (
+                  <div className="w-full">
+                    <div className="flex justify-between items-center">
+                      <div className="flex gap-3">
+                        <h1 className="text-[16px]">Overall Experience</h1>
+                        <p className="bg-gray-300 px-3 py-2 rounded-xl text-[9px]">
+                          <span>Duration -</span> {post.duration} <span>days</span>
+                        </p>
+                        <p className="bg-gray-300 px-3 py-2 rounded-xl text-[9px]">
+                          Budget - Medium
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-1 mr-3">
+                        <Star size={20} />
+                        <span className="font-bold">4.3</span>
+                      </div>
+                    </div>
+                    <hr className="my-4" />
+                    <p className="">{post.caption}</p>
+                  </div>
+                )}
+
+                {/* Places */}
+                {selectedButton === "Places" && (
+                  <div className="w-full">
+                    <div className="flex justify-between items-center">
+                      <div className="flex gap-3">
+                        <h1 className="text-[16px]">Places</h1>
+                        <p className="bg-gray-300 px-3 py-2 rounded-xl text-[9px]">
+                          Duration - 4 Days
+                        </p>
+                        <p className="bg-gray-300 px-3 py-2 rounded-xl text-[9px]">
+                          Duration - 4 Days
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-1 mr-3">
+                        <Star size={20} />
+                        <span className="font-bold">4.3</span>
+                      </div>
+                    </div>
+                    <hr className="my-4" />
+                    <p className="">{post.caption}</p>
+                  </div>
+                )}
+
+                {/* Expenses */}
+                {selectedButton === "Expenses" && (
+                  <div className="w-full">
+                    <div className="flex justify-between items-center">
+                      <div className="flex gap-3">
+                        <h1 className="text-[16px]">Expenses</h1>
+                        <p className="bg-gray-300 px-3 py-2 rounded-xl text-[9px]">
+                          Duration - 4 Days
+                        </p>
+                        <p className="bg-gray-300 px-3 py-2 rounded-xl text-[9px]">
+                          Duration - 4 Days
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-1 mr-3">
+                        <Star size={20} />
+                        <span className="font-bold">4.3</span>
+                      </div>
+                    </div>
+                    <hr className="my-4" />
+                    <p className="">{post.caption}</p>
+                  </div>
+                )}
+
+                {/* Food/stay  */}
+                {selectedButton === "Food/Stay" && (
+                  <div className="w-full">
+                    <div className="flex justify-between items-center">
+                      <div className="flex gap-3">
+                        <h1 className="text-[16px]">Food/Stay</h1>
+                        <p className="bg-gray-300 px-3 py-2 rounded-xl text-[9px]">
+                          <span>Duration -</span> {post.duration} <span>days</span>
+                        </p>
+                        <p className="bg-gray-300 px-3 py-2 rounded-xl text-[9px]">
+                          Duration - 4 Days
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-1 mr-3">
+                        <Star size={20} />
+                        <span className="font-bold">4.3</span>
+                      </div>
+                    </div>
+                    <hr className="my-4" />
+                    <p className="">{post.caption}</p>
+                  </div>
+                )}
+
+                {/* Recommendation  */}
+                {selectedButton === "Recommendation" && (
+                  <div className="w-full">
+                    <div className="flex justify-between items-center">
+                      <div className="flex gap-3">
+                        <h1 className="text-[16px]">Recommendation</h1>
+                        <p className="bg-gray-300 px-3 py-2 rounded-xl text-[9px]">
+                          Duration - 4 Days
+                        </p>
+                        <p className="bg-gray-300 px-3 py-2 rounded-xl text-[9px]">
+                          Duration - 4 Days
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-1 mr-3">
+                        <Star size={20} />
+                        <span className="font-bold">4.3</span>
+                      </div>
+                    </div>
+                    <hr className="my-4" />
+                    <p className="">{post.caption}</p>
+                  </div>
+                )}
+
+                {selectedButton === "Comments" && (
+                  <div className="w-full">
+                    <div className="flex justify-between items-center">
+                      <div className="flex gap-3">
+                        <h1 className="text-[16px]">Comments</h1>
+                        <p className="bg-gray-300 px-3 py-2 rounded-xl text-[9px]">
+                          Newer
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-1 mr-3">
+                        <span className="font-bold">4.3</span>
+                        <MessageCircle size={20} />
+                      </div>
+                    </div>
+                    <hr className="my-4" />
+                    <div className="max-h-[300px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
+                      <CommentsSection />
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
-            <hr className="border-gray-300 mb-2 mt-2"/>
-            <div className="mx-2 ml-9  text-gray-600 pl-2 text-[14px]">
-              <div className="mt-2">
-                <p>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Cumque odio molestiae consequatur labore error. Ab quaerat
-                  omnis, ad maxime rerum et impedit molestias facere! Ut rerum
-                  est commodi consequuntur, vel iste temporibus!
-                </p>
-                <p>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Excepturi ad consectetur dolore quidem quaerat sapiente aut
-                  impedit quo odit, dolor quae rerum, blanditiis libero eaque at
-                  repellendus sed eius corrupti, reprehenderit incidunt.
-                </p>
-              </div>
-            </div>
-            <div className="mx-2 ml-9 ">
+
+            <div className="ml-7 border-t-0 border-2 mr-4 rounded-xl rounded-t-none ">
               {/* Like, Comment, Share Icons */}
-              <div className="flex px-2 py-2 justify-start items-center mt-2">
-                <button className="flex items-center justify-center align-items-center mr-4 text-gray-600">
-                <Heart size={20}/>
-                  {/* <span className=" text-[11px] -mt-1 ml-1">Like</span> */}
+              <div className="flex py-2 justify-between items-center px-5 mt-auto">
+                <button className="flex items-center justify-center align-items-center mr-4 text-gray-600 gap-2">
+                  <Heart
+                    size={28}
+                    color={liked ? "pink" : "black"}
+                    fill={liked ? "pink" : "white"}
+                    onClick={() => handlelike()}
+                    style={{ cursor: "pointer" }}
+                  />
+                  <div className="flex flex-col items-center">
+                    <span className=" text-[16px] font-bold">{post.likes?.length}</span>
+                    <span className=" text-[10px]">Likes</span>
+                  </div>
                 </button>
-                <button className="flex items-center mr-4 text-gray-600">
-                  {/* <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 8h16M4 16h16"></path>
-                </svg> */}
-                   <MessageCircle size={20}/>
-                  {/* <span className=" text-[11px] -mt-1 ml-1">Comment</span> */}
+                <button
+                  className="flex items-center mr-4 text-gray-600 gap-2"
+                  onClick={() => handleButtonClick("Comments")}
+                >
+                  <MessageCircle size={28} />
+                  <div className="flex flex-col items-center">
+                    <span className=" text-[16px] font-bold">{post.comments?.length}</span>
+                    <span className=" text-[10px]">comments</span>
+                  </div>
                 </button>
-                <button className="flex items-center text-gray-600">
-                  {/* <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                </svg> */}
-                   <Share size={19}/>
-                  {/* <span className=" text-[11px] -mt-1 ml-1">Share</span> */}
+                <button className="flex items-center text-gray-600 gap-2">
+                  <Share size={28} />
+                  <div className="flex flex-col items-center">
+                    <span className=" text-[16px] font-bold">30</span>
+                    <span className=" text-[10px]">Shares</span>
+                  </div>
                 </button>
               </div>
             </div>
