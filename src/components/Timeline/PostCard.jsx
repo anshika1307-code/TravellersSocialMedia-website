@@ -151,8 +151,8 @@ const PostCard = ({ post }) => {
                     style={{ paddingTop: "100%" }}
                   >
                     {url.endsWith(".mp4") ||
-                    url.endsWith(".webm") ||
-                    url.endsWith(".ogg") ? ( // Check if the URL is a video
+                      url.endsWith(".webm") ||
+                      url.endsWith(".ogg") ? ( // Check if the URL is a video
                       <video
                         className="absolute top-0 left-0 w-full h-full object-cover"
                         controls
@@ -190,10 +190,10 @@ const PostCard = ({ post }) => {
               <div className="ml-4 flex justify-start items-center align-items-center gap-2">
                 {/* <IoPersonCircleSharp size={45} /> */}
                 <img
-            className="rounded-full w-12 h-12"
-            src={post.user?.profilePic || 'https://via.placeholder.com/150'}
-            alt="Avatar"
-          />
+                  className="rounded-full w-12 h-12"
+                  src={post.user?.profilePic || 'https://via.placeholder.com/150'}
+                  alt="Avatar"
+                />
                 <div>
                   <p className="text-[18px]">{post.user.username}</p>
                   <p className="text-[9px]">2 hours ago</p>
@@ -205,11 +205,10 @@ const PostCard = ({ post }) => {
             </div>
             <div className="flex p-2 gap-2 lg:pl-7 flex-wrap">
               <button
-                className={`rounded-lg bg-pink-200 border-2 border-gray-300 text-gray-600 text-[10px] items-center h-10 px-2  flex ${
-                  selectedButton === "Experience"
+                className={`rounded-lg bg-pink-200 border-2 border-gray-300 text-gray-600 text-[10px] items-center h-10 px-2  flex ${selectedButton === "Experience"
                     ? "bg-white border border-gray-400"
                     : ""
-                }`}
+                  }`}
                 onClick={() => handleButtonClick("Experience")}
               >
                 <div className="m-1">
@@ -219,11 +218,10 @@ const PostCard = ({ post }) => {
               </button>
 
               <button
-                className={`rounded-lg bg-blue-200 border-2 border-gray-300 text-gray-600 px-2 py-1 text-[10px] h-10 items-center flex ${
-                  selectedButton === "Places"
+                className={`rounded-lg bg-blue-200 border-2 border-gray-300 text-gray-600 px-2 py-1 text-[10px] h-10 items-center flex ${selectedButton === "Places"
                     ? "bg-white border border-gray-400"
                     : ""
-                }`}
+                  }`}
                 onClick={() => handleButtonClick("Places")}
               >
                 <div className="m-1">
@@ -232,11 +230,10 @@ const PostCard = ({ post }) => {
                 Places
               </button>
               <button
-                className={`rounded-lg bg-green-200 border-2 border-gray-300 text-gray-600 px-2 py-1 text-[10px] h-10 items-center flex ${
-                  selectedButton === "Expenses"
+                className={`rounded-lg bg-green-200 border-2 border-gray-300 text-gray-600 px-2 py-1 text-[10px] h-10 items-center flex ${selectedButton === "Expenses"
                     ? "bg-white border border-gray-400"
                     : ""
-                }`}
+                  }`}
                 onClick={() => handleButtonClick("Expenses")}
               >
                 <div className="m-1">
@@ -245,11 +242,10 @@ const PostCard = ({ post }) => {
                 Expenses
               </button>
               <button
-                className={`rounded-lg bg-orange-200 border-2 border-gray-300 text-gray-600 px-2 py-1 text-[10px] h-10 items-center flex ${
-                  selectedButton === "Food/Stay"
+                className={`rounded-lg bg-orange-200 border-2 border-gray-300 text-gray-600 px-2 py-1 text-[10px] h-10 items-center flex ${selectedButton === "Food/Stay"
                     ? "bg-white border border-gray-400"
                     : ""
-                }`}
+                  }`}
                 onClick={() => handleButtonClick("Food/Stay")}
               >
                 <div className="m-1">
@@ -258,11 +254,10 @@ const PostCard = ({ post }) => {
                 Food/Stay
               </button>
               <button
-                className={`rounded-lg bg-red-200 border-2 border-gray-300 text-gray-600 px-2 py-1 flex text-[10px] h-10 items-center ${
-                  selectedButton === "Recommendation"
+                className={`rounded-lg bg-red-200 border-2 border-gray-300 text-gray-600 px-2 py-1 flex text-[10px] h-10 items-center ${selectedButton === "Recommendation"
                     ? "bg-white border border-gray-400"
                     : ""
-                }`}
+                  }`}
                 onClick={() => handleButtonClick("Recommendation")}
               >
                 <div className="m-1">
@@ -281,7 +276,7 @@ const PostCard = ({ post }) => {
                       <div className="flex gap-3">
                         <h1 className="text-[16px]">Overall Experience</h1>
                         <p className="bg-gray-300 px-3 py-2 rounded-xl text-[9px]">
-                        <span>Duration -</span> {post.duration} <span>days</span>
+                          <span>Duration -</span> {post.duration} <span>days</span>
                         </p>
                         <p className="bg-gray-300 px-3 py-2 rounded-xl text-[9px]">
                           Budget - Medium
@@ -399,7 +394,7 @@ const PostCard = ({ post }) => {
                         </p>
                       </div>
                       <div className="flex items-center gap-1 mr-3">
-                      <span className="font-bold">4.3</span>
+                        <span className="font-bold">4.3</span>
                         <MessageCircle size={20} />
                       </div>
                     </div>
@@ -416,7 +411,13 @@ const PostCard = ({ post }) => {
               {/* Like, Comment, Share Icons */}
               <div className="flex py-2 justify-between items-center px-5 mt-auto">
                 <button className="flex items-center justify-center align-items-center mr-4 text-gray-600 gap-2">
-                  <Heart size={28} />
+                  <Heart
+                    size={28}
+                    color={liked ? "pink" : "black"}
+                    fill={liked ? "pink" : "white"}
+                    onClick={() => handlelike()}
+                    style={{ cursor: "pointer" }}
+                  />
                   <div className="flex flex-col items-center">
                     <span className=" text-[16px] font-bold">{post.likes?.length}</span>
                     <span className=" text-[10px]">Likes</span>
