@@ -151,7 +151,7 @@ import SearchBar from './SearchBar';
 
 
 
-const MessageList = ({messages, setSelectedMessage}) => {
+const MessageList = ({ messages, setSelectedMessage }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleExpand = () => {
@@ -159,13 +159,13 @@ const MessageList = ({messages, setSelectedMessage}) => {
   };
 
   return (
-    <div className="fixed bottom-0 right-0 m-4 w-96 max-w-md">
-      <div className="bg-gray-200 rounded-lg overflow-hidden shadow-md flex flex-col">
-        <Header isExpanded={isExpanded} toggleExpand={toggleExpand} />
-        <SearchBar />
-        <div className={`flex-grow ${isExpanded ? 'h-96' : 'h-64'} overflow-y-auto overflow-x-hidden transition-height duration-300`}>
-          {messages.map((message, index) => (
-            <div key={index} onClick={() => setSelectedMessage(message)}>
+    <div className="w-full max-w-md ml-auto h-screen">
+    <div className="bg-gray-200 rounded-lg overflow-hidden shadow-md flex flex-col h-full">
+      <Header isExpanded={isExpanded} toggleExpand={toggleExpand} />
+      <SearchBar />
+      <div className="flex-grow overflow-y-auto overflow-x-hidden transition-height duration-300">
+        {messages.map((message, index) => (
+          <div key={index} onClick={() => setSelectedMessage(message)}>
             <MessageItem
               key={index}
               profilePic={message.profilePic}
@@ -174,11 +174,11 @@ const MessageList = ({messages, setSelectedMessage}) => {
               timestamp={message.timestamp}
               isUnread={message.isUnread}
             />
-            </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </div>
+  </div>
   );
 };
 

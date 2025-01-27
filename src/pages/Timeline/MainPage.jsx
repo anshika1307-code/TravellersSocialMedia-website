@@ -292,7 +292,38 @@ function MainPage() {
             className="w-full overflow-y-auto"
             style={{ maxHeight: "calc(100vh - 60px)" }}
           >
-            {postsbackend.length > 0 ? (
+            {isMessageListVisible ? (
+              <div className="flex h-screen w-full">
+                {/* Left side - WriteMessageCard */}
+                <div className="w-2/3">
+                  {selectedMessage ? (
+                    <WriteMessageCard
+                      message={selectedMessage}
+                      closeMessageCard={() => setSelectedMessage(null)}
+                    />
+                  ) : (
+                    <div className=" flex flex-col h-[50%] w-full  justify-center text-center text-gray-600">
+                      <h2 className="text-xl font-semibold">Your Messages</h2>
+                      <p className="mt-2">
+                        Send private photos and messages to a friend or group.
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Right side - MessageList */}
+                <div className="w-1/3">
+                  <MessageList
+                    messages={messages}
+                    setSelectedMessage={handleSelectMessage}
+                  />
+                </div>
+              </div>
+            ) : // <div className="flex flex-grow">
+            //   <MessageList messages={messages} setSelectedMessage={handleSelectMessage} />
+            //   {selectedMessage && <WriteMessageCard message={selectedMessage} closeMessageCard={closeMessageCard} />}
+            // </div>
+            postsbackend.length > 0 ? (
               postsbackend.map((post) => (
                 <PostCard key={post._id} post={post} />
               ))
@@ -308,7 +339,7 @@ function MainPage() {
           {/* Other components or content can be added here */}
           {/* <MessageList /> */}
           {/* {isMessageListVisible && <MessageList messages={messages}/>} */}
-          {isMessageListVisible && (
+          {/* {isMessageListVisible && (
             <div className="flex flex-grow">
               <MessageList
                 messages={messages}
@@ -321,7 +352,7 @@ function MainPage() {
                 />
               )}
             </div>
-          )}
+          )} */}
         </div>
         <div className="relative z-110 min-h-screen flex">
           {notificationTab && <NotificationBox notification={notification} />}
