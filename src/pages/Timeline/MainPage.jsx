@@ -60,6 +60,8 @@ import MessageList from "../../components/MessageBox/MessageList.jsx";
 import WriteMessageCard from "../../components/MessageBox/WriteMessageCard.jsx";
 import NotificationBox from "../../components/Notification/NotificationBox.jsx";
 import { useDispatch, useSelector } from "react-redux";
+import { MessageCircleMore } from "lucide-react";
+
 function MainPage() {
   const [postCards, setPostCards] = useState([]);
   const [isMessageListVisible, setIsMessageListVisible] = useState(false);
@@ -293,7 +295,7 @@ function MainPage() {
             style={{ maxHeight: "calc(100vh - 60px)" }}
           >
             {isMessageListVisible ? (
-              <div className="flex h-screen w-full">
+              <div className="flex h-screen w-full gap-5 mt-2">
                 {/* Left side - WriteMessageCard */}
                 <div className="w-2/3">
                   {selectedMessage ? (
@@ -302,11 +304,16 @@ function MainPage() {
                       closeMessageCard={() => setSelectedMessage(null)}
                     />
                   ) : (
-                    <div className=" flex flex-col h-[50%] w-full  justify-center text-center text-gray-600">
+                    <div className=" flex flex-col h-[100vh] bg-white w-full  justify-center text-center text-gray-600 rounded-xl">
+                      <div className="-mt-[140px]"><div className="flex justify-center items-center mb-3">
+                        <MessageCircleMore size={70}/>
+                      </div>
+
                       <h2 className="text-xl font-semibold">Your Messages</h2>
-                      <p className="mt-2">
+                      <p className="text-[13px] mt-1">
                         Send private photos and messages to a friend or group.
-                      </p>
+                      </p></div>
+                      
                     </div>
                   )}
                 </div>

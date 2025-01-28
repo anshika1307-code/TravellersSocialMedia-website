@@ -159,8 +159,8 @@ const MessageList = ({ messages, setSelectedMessage }) => {
   };
 
   return (
-    <div className="w-full max-w-md ml-auto h-screen">
-    <div className="bg-gray-200 rounded-lg overflow-hidden shadow-md flex flex-col h-full">
+    <div className="w-full max-w-md h-screen -ml-2">
+    <div className="bg-[#fff8f8] overflow-hidden shadow-md flex flex-col h-full rounded-xl">
       <Header isExpanded={isExpanded} toggleExpand={toggleExpand} />
       <SearchBar />
       <div className="flex-grow overflow-y-auto overflow-x-hidden transition-height duration-300">

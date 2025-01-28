@@ -40,10 +40,12 @@
 
 import React from 'react';
 import { FaExpand, FaEllipsisV, FaTimes } from 'react-icons/fa';
+import { Info } from 'lucide-react';
 
 const WriteMessageCard = ({ message, closeMessageCard }) => {
   return (
-    <div className="w-full h-screen bg-white shadow-md p-6 flex flex-col">
+    <div className="w-full h-screen bg-white rounded-xl shadow-md p-6 flex flex-col">
+      {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center">
           <img
@@ -59,20 +61,35 @@ const WriteMessageCard = ({ message, closeMessageCard }) => {
           </div>
         </div>
         <div className="flex items-center space-x-4">
-          <FaExpand className="text-gray-600 cursor-pointer text-xl" />
-          <FaEllipsisV className="text-gray-600 cursor-pointer text-xl" />
-          <FaTimes className="text-gray-600 cursor-pointer text-xl" onClick={closeMessageCard} />
+        <Info />
+          {/* <FaTimes className="text-gray-600 cursor-pointer text-xl" onClick={closeMessageCard} /> */}
         </div>
       </div>
       <hr />
-      <div className="flex-grow overflow-y-auto mb-4">
+      
+      {/* Chat Messages */}
+      <div className="flex-grow overflow-y-auto mb-4 mt-3">
         {message.conversation.map((msg, index) => (
-          <div key={index} className="mb-2">
-            <p className={`font-bold ${msg.sender === 'You' ? 'text-right' : ''}`}>{msg.sender}:</p>
-            <p className={`bg-gray-100 p-3 rounded-lg ${msg.sender === 'You' ? 'text-right bg-blue-100' : ''}`}>{msg.text}</p>
+          <div
+            key={index}
+            className={`flex mb-2 ${
+              msg.sender === 'You' ? 'justify-end' : 'justify-start'
+            }`}
+          >
+            <div
+              className={`px-4 py-2 rounded-lg max-w-xs ${
+                msg.sender === 'You'
+                  ? 'bg-blue-100 text-right'
+                  : 'bg-gray-100 text-left'
+              }`}
+            >
+              <p>{msg.text}</p>
+            </div>
           </div>
         ))}
       </div>
+      
+      {/* Input Field */}
       <div>
         <input
           type="text"

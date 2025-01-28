@@ -27,6 +27,8 @@
 
 import React from 'react';
 import { FaSearch, FaCog, FaEdit, FaArrowDown, FaArrowUp } from 'react-icons/fa';
+import { EllipsisVertical } from 'lucide-react';
+import { MessageCirclePlus } from 'lucide-react';
 
 const Header = ({ isExpanded, toggleExpand }) => {
   return (
@@ -40,12 +42,11 @@ const Header = ({ isExpanded, toggleExpand }) => {
         <h1 className="ml-4 text-xl font-semibold">Messaging</h1>
       </div>
       <div className="flex items-center space-x-4">
-        <FaSearch className="text-gray-600 cursor-pointer" />
-        <FaCog className="text-gray-600 cursor-pointer" />
-        <FaEdit className="text-gray-600 cursor-pointer" />
-        <div onClick={toggleExpand} className="cursor-pointer">
+      <MessageCirclePlus />
+      <EllipsisVertical />
+        {/* <div onClick={toggleExpand} className="cursor-pointer">
           {isExpanded ? <FaArrowUp className="text-gray-600" /> : <FaArrowDown className="text-gray-600" />}
-        </div>
+        </div> */}
       </div>
     </div>
   );
