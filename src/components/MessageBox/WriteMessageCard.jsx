@@ -55,7 +55,7 @@ const WriteMessageCard = ({ message, closeMessageCard }) => {
           />
           <div className="ml-4">
             <h4 className="font-semibold text-gray-900 text-lg">{message.name}</h4>
-            <p className="text-sm text-gray-500">
+            <p className="text-[13px] text-gray-500">
               {message.isActive ? "Active" : "Inactive"}
             </p>
           </div>
@@ -68,7 +68,7 @@ const WriteMessageCard = ({ message, closeMessageCard }) => {
       <hr />
       
       {/* Chat Messages */}
-      <div className="flex-grow overflow-y-auto mb-4 mt-3">
+      <div className="flex-grow overflow-y-auto mb-4 mt-3 text-[14px]">
         {message.conversation.map((msg, index) => (
           <div
             key={index}

@@ -13,7 +13,7 @@ const MessageItem = ({ profilePic, name, messageSnippet, timestamp, isUnread }) 
           <h4 className="font-semibold text-gray-900">{name}</h4>
           <span className="text-sm text-gray-500">{timestamp}</span>
         </div>
-        <p className="text-sm text-gray-700 mt-1 truncate">{messageSnippet}</p>
+        <p className="text-[13px] text-gray-700 mt-1 truncate">{messageSnippet}</p>
       </div>
       {isUnread && <div className="ml-4 bg-blue-500 w-3 h-3 rounded-full"></div>}
     </div>
